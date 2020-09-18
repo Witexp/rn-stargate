@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { View, Dimensions,ScrollView, StyleSheet } from 'react-native'
 
-import { Header, ImageCard, Layout } from './src/components/uikit'
+import { Header, ImageCard, Layout } from '../components/uikit'
 
 
 
 
 
-const url = 'https://s3.eu-central-1.wasabisys.com/ghashtag/RNForKids/00-Init/data.json'
+const url = 'http://api.tvmaze.com/search/shows?q=stargate'
 
 
-export default class App extends Component {
+export default class HomeScreen extends Component {
   state = {
       title: 'STAR GATE',
       data: []
@@ -20,7 +20,7 @@ export default class App extends Component {
     try {
       const response = await fetch(url)
       const data = await response.json()
-     // console.log(data)
+      
 
       this.setState({ data })
       
@@ -33,6 +33,7 @@ export default class App extends Component {
   
   render() {
 
+    console.log('this.props', this.props)
     const { title, data } = this.state
     return (
       <View>
@@ -40,7 +41,7 @@ export default class App extends Component {
           <ScrollView>
             <Layout>
             { data.map(item => (
-              <ImageCard data={item} key={item.id} />
+              <ImageCard data={item.show} key={item.show.id} />
             ))}
             </Layout>
           </ScrollView>

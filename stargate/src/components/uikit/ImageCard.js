@@ -2,17 +2,20 @@ import React from 'react'
 import { Text, StyleSheet, Image, View } from 'react-native'
 import { h, w} from '../../../constants'
 
+
 const ImageCard = ({ data }) => {
 
     const {image, name } = data
 
     const { h1, cover,sub, container } = styles
+    const img = `https${image.medium.slice(4)}`
+
     return (
         <View style={container}>
             <View style={sub}>
                 <Image 
                 style={cover}
-                source={{ uri: image}}
+                source={{ uri: img}}
                 />
             </View>
             <Text style={h1}>{name.toUpperCase()}</Text>
