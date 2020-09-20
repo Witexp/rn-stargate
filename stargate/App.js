@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Dimensions,ScrollView, StyleSheet } from 'react-native'
 
 import { Header, ImageCard, Layout } from './src/components/uikit'
+import { STARGATE_DETAILS } from './src/routes'
 
 
 
@@ -34,13 +35,17 @@ export default class App extends Component {
   render() {
 
     const { title, data } = this.state
+    const { navigation } = this.props
+
     return (
       <View>
         <Header title={title}/>
           <ScrollView>
             <Layout>
             { data.map(item => (
-              <ImageCard data={item} key={item.id} />
+              <ImageCard data={item} key={item.id} 
+              onPress={() => navigation.navigate(STARGATE_DETAILS,(data))}
+              />
             ))}
             </Layout>
           </ScrollView>

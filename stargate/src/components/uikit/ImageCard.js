@@ -1,9 +1,9 @@
 import React from 'react'
-import { Text, StyleSheet, Image, View } from 'react-native'
+import { Text, StyleSheet, Image, View, TouchableOpacity } from 'react-native'
 import { h, w} from '../../../constants'
 
 
-const ImageCard = ({ data }) => {
+const ImageCard = ({ data, onPress }) => {
 
     const {image, name } = data
 
@@ -11,16 +11,17 @@ const ImageCard = ({ data }) => {
     const img = `https${image.medium.slice(4)}`
 
     return (
-        <View style={container}>
-            <View style={sub}>
-                <Image 
-                style={cover}
-                source={{ uri: img}}
-                />
+        <TouchableOpacity onPress={onPress}>
+            <View style={container}>
+                <View style={sub}>
+                    <Image 
+                    style={cover}
+                    source={{ uri: img}}
+                    />
+                </View>
+                <Text style={h1}>{name.toUpperCase()}</Text>
             </View>
-            <Text style={h1}>{name.toUpperCase()}</Text>
-        </View>
-        
+        </TouchableOpacity>
     )
 }
 
@@ -43,9 +44,10 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowRadius: 8,
         borderRadius: 10,
-        backgroundColor: 'white',
+        //backgroundColor: 'white',
         shadowOffset: {width: 0, height: 5},
-        shadowOpacity: 0.4},
+        shadowOpacity: 0.4
+    },
     container: {
         width: w / 2.4,
         paddingVertical: 10,

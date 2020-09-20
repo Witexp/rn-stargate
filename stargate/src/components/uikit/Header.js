@@ -1,35 +1,50 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 
+import {w} from '../../../constants'
 
-const Header = props => {
+import Icon from 'react-native-vector-icons/Ionicons';
+
+
+const Header = ({title, onPress, leftIcon, leftColor, detail}) => {
     //console.log(props)
 
-    const { viewStyle, textStyle } = styles
+    const { viewStyle, textStyle, leftButtonStyle } = styles
     return (
-        
             <View style={viewStyle}>
-                <Text style={textStyle}>{props.title}</Text>
+            <TouchableOpacity onPress={onPress}> 
+                <Icon 
+                name={leftIcon} 
+                style={[leftButtonStyle, {paddingLeft: detail ? 5 : 30}]}
+                color={leftColor}
+                ></Icon>
+               </TouchableOpacity> 
+                <Text
+                numberOfLines={1} 
+                ellipsizeMode='tail'
+                style={[textStyle, {paddingLeft: leftIcon ? 0 : 0}]}
+                >
+                  {title}
+                </Text>
             </View>
-       
     )
 }
 
 
 const styles = StyleSheet.create({
     viewStyle: {
-      
+      flexDirection: 'row',
       ...ifIphoneX({
           height: 116,
       },{
           height: 90
       }
       ),
-      justifyContent: 'center',
-      alignItems: 'flex-start',
+      //justifyContent: 'center',
+      //alignItems: 'flex-start',
       backgroundColor: '#30d0fe',
-      paddingLeft: 22,
+     // paddingLeft: 22,
       //paddingTop: 71,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2},
@@ -39,6 +54,7 @@ const styles = StyleSheet.create({
     },
     textStyle: {
       color: '#fff',
+      width: w -40,
       fontSize: 28,
       fontFamily: 'AvenirNext-DemiBold',
       //textAlign: 'center',
@@ -50,6 +66,14 @@ const styles = StyleSheet.create({
     }
     ),
     },
+    leftButtonStyle: {
+      ...ifIphoneX({
+        paddingTop: 75
+      },{
+        paddingTop: 50
+      }),
+      fontSize: 35
+    }
   })
   
 

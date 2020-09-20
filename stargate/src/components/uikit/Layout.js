@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, ScrollView } from 'react-native'
 
+
 const Layout = (props) => {
     const {container} = styles
 

@@ -13,6 +13,7 @@
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-iphone-x-helper": "^1.2.1",
+    "react-native-vector-icons": "^7.1.0",
     "react-navigation": "^2.18.3"
   },
   "devDependencies": {
